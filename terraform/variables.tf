@@ -22,7 +22,7 @@ variable "public_subnets_elb" {
   default = "subnet-9eb547f5"
 }
 
-variable "private_subnets_inst" {
+variable "public_subnets_inst" {
   default = "subnet-9eb547f5"
 }
 
