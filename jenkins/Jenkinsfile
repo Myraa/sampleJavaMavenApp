@@ -175,8 +175,8 @@ def packerjob() {
         sh """
         cd packer
         export appname="myapp"
-        export release="0.0.1-SNAPSHOT"
-        export version="0.0.1-SNAPSHOT"
+        export release="0.0.1"
+        export version="0.0.1"
         export BUILD_NUMBER
         packer validate -var-file variables.json packer.json
         """
