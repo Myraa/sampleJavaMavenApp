@@ -27,7 +27,6 @@
     "Owner": "{{user `Owner`}}",
     "Customer": "{{user `Customer`}}",
     "Project": "{{user `Project`}}",
-    "Environment": "{{user `Environment`}}",
     "Build_Version": "{{user `buildversion`}}",
     "BuildType": "{{user `BuildType`}}",
     "ReleaseVersion": "{{user `release`}}-{{user `BuildType`}}"
