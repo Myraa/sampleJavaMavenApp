@@ -36,12 +36,14 @@
   "provisioners": [{
     "type": "file",
      "source": "/var/lib/jenkins/workspace/sampleJavaMavenApp_master/target/my-app-1.0.0-SNAPSHOT.jar",
-    "destination": "/tmp/my-app-1.0.0-SNAPSHOT.jar"
+    "destination": "/tmp/"
   },
   {
     "type": "shell",
     "inline": [
-    "sudo chown ubuntu:ubuntu /tmp/*.jar"
+    "sudo chown ubuntu:ubuntu /tmp/*.jar",
+    "sudo cp -p /tmp/my-app-1.0.0-SNAPSHOT.jar /",
+    "sudo sleep 10"
     ]
   }]
 }
