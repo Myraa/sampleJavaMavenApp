@@ -172,7 +172,7 @@ resource "aws_elb" "ntt-elb" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:/sys/v1/heartbeat"
+    target              = "HTTP:80/"
     interval            = 30
   }
 }
