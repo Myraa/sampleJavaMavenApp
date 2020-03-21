@@ -19,7 +19,7 @@
   "ami_name": "AMI-LINUX1804-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
 
   "tags": {
-    "Name": "AMI-myapp-0.0.1-SNAPSHOT-{{user `buildversion`}}",
+    "Name": "AMI-myapp-1.0.0-SNAPSHOT-{{user `buildversion`}}",
     "Application_role": "{{user `Application_role`}}",
     "Cluster": "{{user `Cluster`}}",
     "Environment": "{{user `Environment`}}",
@@ -43,7 +43,10 @@
     "inline": [
     "sudo chown ubuntu:ubuntu /tmp/*.jar",
     "sudo cp -p /tmp/my-app-1.0.0-SNAPSHOT.jar /",
-    "sudo sleep 10"
+    "sudo sleep 10",
+    "sudo apt update",
+    "sudo apt install openjdk-11-jre-headless -y",
+    "sudo nohup java -jar /myapp-1.0.0-SNAPSHOT.jar &"
     ]
   }]
 }
