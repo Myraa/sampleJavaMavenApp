@@ -221,12 +221,6 @@ resource "aws_security_group" "ntt-sg" {
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
-    tags {
-    Name = "${var.ntt_instance_sg_name}"
-	Environment = "${var.Environment}"
-	Owner = "${var.Owner}"
-	Project = "${var.Project}"
-  }
 }
 
 # ------------------------------------------------------------------------------
@@ -293,11 +287,5 @@ resource "aws_security_group" "ntt-elb-sg" {
     to_port = 443
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
-  tags {
-    Name = "[${var.ntt_elb_sg_name}]"
-	Environment = "[${var.Environment}]"
-	Owner = "[${var.Owner}]"
-	Project = "[${var.Project}]"
   }
 }
