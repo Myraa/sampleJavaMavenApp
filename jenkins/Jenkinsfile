@@ -206,6 +206,7 @@ def terraformjob()
          export AWS_PROFILE=ntt
          export TF_VAR_ami_id="myapp-0.0.1-SNAPSHOT"
          echo \$TF_VAR_ami_id
+     cd terraform
      terraform init
      terraform plan -no-color
      terraform apply -no-color
