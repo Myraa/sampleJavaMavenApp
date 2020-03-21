@@ -255,7 +255,7 @@ def notifyBuild(buildStatus=currentBuild.result)
         <p>Test Result = (${test_result}) </p>
         <p>Check Console Log at (${env.BUILD_URL}) <p>
         <p>Check unit coverage report at  (${env.BUILD_URL}/Coverage_Report) </p>  """,
-        to: 'US-MCD_SE_Pilot@us.mcd.com' ,
+        to: 'boddupatel@gmail.com' ,
         mimeType: 'text/html'
     )
     }   
