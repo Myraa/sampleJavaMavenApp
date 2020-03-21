@@ -42,10 +42,7 @@
   {
     "type": "shell",
     "inline": [
-    "sudo chown mulesoft:mulesoft /tmp/{{user `app_name`}}-{{user `release`}}-SNAPSHOT.zip",
-    "sudo cp -p /tmp/{{user `app_name`}}-{{user `release`}}-SNAPSHOT.zip /app/mule-esb/apps",
-    "sudo sleep 10",
-    "sudo sed -i 's/$deploy_env/{{user `Environment`}}/g' /app/mule-esb/conf/wrapper.conf"
+    "sudo chown ubuntu:ubuntu /tmp/*.zip"
     ]
   }]
 }
