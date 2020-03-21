@@ -143,15 +143,8 @@ def unit_tests()
 
     }
 
-//Function definition to push the artifacts to artifactory
-def package_publish_artifactory()
-    {
-    sh """
-    mvn -DskipTests    deploy
-    """
-    }
 //Function definition to push the artifacts to artifactory     for the master branch, perorms maven release
-def package_publish_artifactory_master()
+def create_package()
     {
 
         def originalV = get_version();
@@ -161,13 +154,8 @@ def package_publish_artifactory_master()
         def pom_version = "${major}.${minor}.${patch}";
         def commit_message = sh (script: "git log -1| tail -1", returnStdout: true)
 
-
-        load "input.properties"
-
         sh """
-        mvn -DskipTests    package
-        curl -H 'X-JFrog-Art-Api: ${artifactory_apikey}' -T target/${appname}-${pom_version}.zip  ${artifactory_host}/${artifactory_path}/${appname}/${pom_version}/${appname}-${pom_version}.zip
-
+        mvn -DskipTests package
         git config user.name "Myraa"
         git config user.email "boddu.prasad@gmail.com"
         git tag v$pom_version.${env.BUILD_NUMBER}
