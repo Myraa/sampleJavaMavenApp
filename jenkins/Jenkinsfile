@@ -83,8 +83,8 @@ def masterBranch()
     stage'publish_results'
         publish_junit()
 //create zip package from the source code and push it to artifactory
-      stage'package_publish_artifactory_master'
-        package_publish_artifactory_master()
+      stage'create_package'
+        create_package()
 // call the function packerjob, it will extact artifact from artifactory, validate packer , and runs packer build to create customized AMI with Application
    packerjob()
 
