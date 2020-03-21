@@ -49,14 +49,14 @@ resource "aws_launch_configuration" "ntt-launch-config-blue" {
 #--------------------------------------------------------------------------------
 # create a Autoscaling group, specify launch configuration details
 #--------------------------------------------------------------------------------
-resource "aws_autoscaling_group" "ntt-autoscale-identity-grp-blue" {
-  name = "ntt-autoscale-identity-grp-blue-${aws_launch_configuration.ntt-launch-config-blue.name}"
+resource "aws_autoscaling_group" "ntt-autoscale-grp-blue" {
+  name = "ntt-autoscale-grp-blue-${aws_launch_configuration.ntt-launch-config-blue.name}"
   health_check_type = "EC2"
   load_balancers = ["${aws_elb.ntt-elb.name}"]
   launch_configuration = "${aws_launch_configuration.ntt-launch-config-blue.name}"
   max_size = 1
   min_size = 1
-  vpc_zone_identifier = ["${var.private_subnets_inst}"]
+  vpc_zone_identifier = ["${var.public_subnets_inst}"]
   lifecycle {
     create_before_destroy = true
   }
@@ -81,46 +81,6 @@ resource "aws_autoscaling_group" "ntt-autoscale-identity-grp-blue" {
     propagate_at_launch = true
     }
 }
-
-#--------------------------------------------------------------------------------------
-# create a Autoscaling policy
-#--------------------------------------------------------------------------------------
-
-resource "aws_autoscaling_policy" "agents-identity-blue-scale-cpu-up" {
-    name = "agents-identity-blue-scale-cpu-up"
-    scaling_adjustment = 1
-    adjustment_type = "ChangeInCapacity"
-    cooldown = 300
-    autoscaling_group_name = "${aws_autoscaling_group.ntt-autoscale-identity-grp-blue.name}"
-}
-
-resource "aws_autoscaling_policy" "agents-identity-blue-scale-cpu-down" {
-    name = "agents-identity-blue-scale-cpu-down"
-    scaling_adjustment = -1
-    adjustment_type = "ChangeInCapacity"
-    cooldown = 300
-    autoscaling_group_name = "${aws_autoscaling_group.ntt-autoscale-identity-grp-blue.name}"
-}
-
-resource "aws_autoscaling_policy" "agents-identity-blue-scale-mem-up" {
-    name = "agents-identity-blue-scale-mem-up"
-    scaling_adjustment = 1
-    adjustment_type = "ChangeInCapacity"
-    cooldown = 300
-    autoscaling_group_name = "${aws_autoscaling_group.ntt-autoscale-identity-grp-blue.name}"
-}
-
-resource "aws_autoscaling_policy" "agents-identity-blue-scale-mem-down" {
-    name = "agents-identity-blue-scale-mem-down"
-    scaling_adjustment = -1
-    adjustment_type = "ChangeInCapacity"
-    cooldown = 300
-    autoscaling_group_name = "${aws_autoscaling_group.ntt-autoscale-identity-grp-blue.name}"
-}
-
-
-
-
 
 
 # ------------------------------------------------------------------------------
