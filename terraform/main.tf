@@ -168,10 +168,6 @@ resource "aws_elb" "ntt-elb" {
     instance_port = 80
     instance_protocol = "http"
   }
-  listener {
-    instance_port      = 80
-    instance_protocol  = "http"
-  }
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
