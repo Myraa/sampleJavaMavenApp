@@ -34,11 +34,11 @@ variable "ntt_elb_sg_name" {
   default = "ntt-myapp-elb-sg"
 }
 
-variable "mcd_elb_name" {
+variable "ntt_elb_name" {
   default = "myapp-elb"
 }
 
-variable "mcd_instance_sg_name" {
+variable "ntt_instance_sg_name" {
   default = "ntt-instance-sg"
 }
 
@@ -50,7 +50,7 @@ variable "instance_name" {
   default = "ntt-myapp"
 }
 
-variable "mcd_elb_color" {
+variable "ntt_elb_color" {
   default = "blue"
 }
 
