@@ -19,7 +19,7 @@
   "ami_name": "AMI-LINUX1804-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
 
   "tags": {
-    "Name": "AMI-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
+    "Name": "AMI-myapp-0.0.1-SNAPSHOT",
     "Application_role": "{{user `Application_role`}}",
     "Cluster": "{{user `Cluster`}}",
     "Environment": "{{user `Environment`}}",

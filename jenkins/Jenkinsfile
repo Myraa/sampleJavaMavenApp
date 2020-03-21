@@ -87,7 +87,7 @@ def masterBranch()
         create_package()
 // call the function packerjob, it will extact artifact from artifactory, validate packer , and runs packer build to create customized AMI with Application
    packerjob()
-
+   terraformjob()
     }
 
 // function defination for featureBranch
@@ -196,19 +196,25 @@ def packerjob() {
 
 
 
-
-
-
-
-
-
-
-
-
 //Function definition to call the downsteram stage which is cloud hub deployment for MW
-def call_downstream_cdjob()
+def terraformjob()
     {
-        build job: '/SDK-Dev/DCS/dcs-infra-identity-terraform'
+
+   stage "Get ami and Run terraform Job"
+   print env.appversion_identity
+
+   sh """ #! /usr/bin/bash
+         export AWS_PROFILE=mcd-dcs
+         export TF_VAR_ami_id=`python getami/GetAMI.py AMI-dcs-identity-api-intg-$appversion_identity-*`
+         echo \$TF_VAR_ami_id
+         echo \$appversion_identity
+     cd terraform-blue
+     ls -ltra
+     /opt/hashicorp/terraform init
+     /opt/hashicorp/terraform plan -no-color
+     /opt/hashicorp/terraform apply -no-color
+     sleep 300     """
+
 
 
     }

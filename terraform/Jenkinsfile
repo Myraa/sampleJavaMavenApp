@@ -1,0 +1,85 @@
+node('AWS-SLAVE-10.1.12.213') {
+  try {
+   stage 'Clone Stash'
+     // for display purposes
+     // Get some code from a Stash repository
+    // git url: 'ssh://git@coderepository.mcd.com:8443/sdkpil/dcs-identity-infra.git',credentialsId: '05de1113-6e45-4a34-8250-6f0f73f09267',branch: 'feature/terraform'
+     checkout scm
+     run_terraform_job()
+	 run_awspec_job()
+  } 
+
+  catch(e) {
+    // Set to failed if exception thrown
+    currentBuild.result = "FAILED"
+    throw(e)
+  } 
+  finally {
+    // Send notification for success/failure
+    notifyBuild(currentBuild.result)
+  }
+}
+def run_terraform_job() {
+   stage "Get ami and Run terraform Job"
+   print env.appversion_identity
+   
+   sh """ #! /usr/bin/bash
+	 export AWS_PROFILE=mcd-dcs
+	 export TF_VAR_ami_id=`python getami/GetAMI.py AMI-dcs-identity-api-intg-$appversion_identity-*`
+	 echo \$TF_VAR_ami_id
+	 echo \$appversion_identity
+     cd terraform-blue
+     ls -ltra
+     /opt/hashicorp/terraform init
+     /opt/hashicorp/terraform plan -no-color
+     /opt/hashicorp/terraform apply -no-color
+     sleep 300     """
+   stage "Validate application"
+	sh """#! /usr/bin/bash
+    validateapp() {
+    which bash
+	APP_STATUSCODE=\$(curl --silent --output /dev/stderr --write-out "%{http_code}" https://identity-ci-dcs.mcdonalds.com/sys/v1/heartbeat)
+	if [ "\$APP_STATUSCODE" -eq 200 ]; then echo "Application is up and running"
+	else
+	echo "application validation failed"; return 1; fi  
+	 }
+	counter=0; 
+	max=3;
+    while [ \$counter -le \$max ]; do
+    validateapp && break
+	sleep 120
+	counter=`expr \$counter + 1`
+	if [[ "\$counter" == 3 ]]; then echo "Application Validation failed"; exit 1; fi
+    done  """
+}
+def run_awspec_job() {
+   stage "Run AWSpec test"
+     sh """#! /usr/bin/bash
+	 export AWS_REGION=us-east-1
+     export AWS_PROFILE=mcd-dcs
+	 cd awspec
+     ls -ltr
+     bundle
+     awspec init
+	 bundle exec rake spec    """
+}
+
+def notifyBuild(buildStatus=currentBuild.result)
+  {
+        stage 'EMAIL DNS'   
+        buildStatus =  buildStatus ?: 'SUCCESSFUL'  
+	
+    // Default values
+        def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+        def summary = "${subject} (${env.BUILD_URL})"
+          
+    // calling emailext plugin
+        emailext (subject: subject,
+		attachLog: true,
+        body: """<p>Build/Job Status(Build No# ${env.BUILD_NUMBER}): ${buildStatus}</p> 
+		 <p>elb url can be accessed through  https://identity-ci-dcs.mcdonalds.com/<p>  """,
+	
+        to: 'srikanth.gali@us.mcd.com',
+        mimeType: 'text/html'
+        )
+ }
