@@ -165,21 +165,18 @@ resource "aws_elb" "ntt-elb" {
   listener {
     lb_port = 80
     lb_protocol = "http"
-    instance_port = "${var.app_port}"
+    instance_port = "80"
     instance_protocol = "http"
   }
   listener {
-    instance_port      = "${var.app_port}"
+    instance_port      = "80"
     instance_protocol  = "http"
-    lb_port            = 443
-    lb_protocol        = "https"
-    ssl_certificate_id = "arn:aws:acm:us-east-2:350460106422:certificate/b6ae256c-9729-4934-af03-6f925c821f0c"
   }
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:${var.app_port}/sys/v1/heartbeat"
+    target              = "HTTP:/sys/v1/heartbeat"
     interval            = 30
   }
 }
