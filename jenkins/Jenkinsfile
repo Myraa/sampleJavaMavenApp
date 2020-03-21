@@ -182,7 +182,7 @@ def packerjob() {
         """
     stage 'Run packer build'
         sh """#!/bin/bash
-        export AWS_PROFILE="mcd-dcs"
+        export AWS_PROFILE="ntt-dcs"
         export aws_access_key
         export aws_secret_key
         cd packer
