@@ -16,7 +16,7 @@
   "instance_type": "{{user `instance_type`}}",
   "ssh_username": "ubuntu",
   "ssh_pty": "true",
-  "ami_name": "AMI-LINUX1804-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
+  "ami_name": "AMI-LINUX1804-{{user `app_name`}}-{{user `release`}}",
 
   "tags": {
     "Name": "AMI-myapp-0.0.1-SNAPSHOT",

@@ -251,7 +251,7 @@ resource "aws_elb" "ntt-elb" {
     instance_protocol  = "http"
     lb_port            = 443
     lb_protocol        = "https"
-    ssl_certificate_id = "arn:aws:acm:us-east-1:350460106422:certificate/b6ae256c-9729-4934-af03-6f925c821f0c"
+    ssl_certificate_id = "arn:aws:acm:us-east-2:350460106422:certificate/b6ae256c-9729-4934-af03-6f925c821f0c"
   }
   health_check {
     healthy_threshold   = 2

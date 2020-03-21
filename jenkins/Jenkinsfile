@@ -182,7 +182,7 @@ def packerjob() {
         """
     stage 'Run packer build'
         sh """#!/bin/bash
-        export AWS_PROFILE="ntt-dcs"
+        export AWS_PROFILE="ntt"
         export aws_access_key
         export aws_secret_key
         cd packer
@@ -202,13 +202,12 @@ def terraformjob()
 
    stage "Get ami and Run terraform Job"
 
-   sh """ #! /usr/bin/bash
-         export AWS_PROFILE=ntt
+   sh """ #!/bin/bash
         export AWS_PROFILE="ntt-dcs"
         export aws_access_key
         export aws_secret_key
-         export TF_VAR_ami_id="myapp-0.0.1-SNAPSHOT"
-         echo \$TF_VAR_ami_id
+        export TF_VAR_ami_id="myapp-0.0.1-SNAPSHOT"
+        echo \$TF_VAR_ami_id
      cd terraform
      terraform init
      terraform plan -no-color
