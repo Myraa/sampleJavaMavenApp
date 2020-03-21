@@ -147,7 +147,7 @@ def unit_tests()
 def create_package()
     {
 
-        sh "mvn clean"
+        sh "mvn install -U"
        // def originalV = get_version();
        // def major = originalV[1];
        // def minor = originalV[2];
