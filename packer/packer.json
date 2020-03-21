@@ -46,13 +46,7 @@
     "sudo sleep 10",
     "sudo chmod u+x /my-app-1.0.0-SNAPSHOT.jar",
     "sudo apt update",
-    "sudo apt install openjdk-11-jre-headless -y",
-    "sudo mkdir /opt/tomcat",
-    "sudo cd /opt/tomcat",
-    "sudo wget https://downloads.apache.org/tomcat/tomcat-10/v10.0.0-M3/bin/apache-tomcat-10.0.0-M3-deployer.tar.gz",
-    "sudo tar -zxvf apache-tomcat-10.0.0-M3-deployer.tar.gz",
-    "sudo groupadd tomcat",
-    "sudo useradd -s /bin/false –g tomcat –d /opt/tomcat tomcat"
+    "sudo apt install openjdk-11-jre-headless -y"
     ]
   }]
 }
