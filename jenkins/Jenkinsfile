@@ -211,7 +211,7 @@ def terraformjob()
      cd terraform
      terraform init
      terraform plan -no-color
-     terraform apply -no-color
+     terraform apply -no-color -auto-approve
      sleep 300     """
 
 
