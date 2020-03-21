@@ -42,7 +42,7 @@
   {
     "type": "shell",
     "inline": [
-    "sudo chown ubuntu:ubuntu /tmp/*.zip"
+    "sudo chown ubuntu:ubuntu /tmp/*.jar"
     ]
   }]
 }
