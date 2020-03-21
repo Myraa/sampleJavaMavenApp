@@ -206,7 +206,7 @@ def terraformjob()
         export AWS_PROFILE="ntt-dcs"
         export aws_access_key
         export aws_secret_key
-        export TF_VAR_ami_id="myapp-0.0.1-SNAPSHOT"
+        export TF_VAR_ami_id="ami-025569e0b3cc1c86a"
         echo \$TF_VAR_ami_id
      cd terraform
      terraform init

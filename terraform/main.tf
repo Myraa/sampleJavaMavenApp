@@ -221,7 +221,7 @@ resource "aws_security_group" "ntt-sg" {
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
-	tags {
+    tags {
     Name = "${var.ntt_instance_sg_name}"
 	Environment = "${var.Environment}"
 	Owner = "${var.Owner}"
@@ -261,11 +261,11 @@ resource "aws_elb" "ntt-elb" {
     interval            = 30
   }
   tags {
-    Name = "${var.ntt_elb_name}"
-	color = "${var.ntt_elb_color}"
-	Environment = "${var.Environment}"
-	Owner = "${var.Owner}"
-	Project = "${var.Project}"
+    Name = "[${var.ntt_elb_name}]"
+	color = "[${var.ntt_elb_color}]"
+	Environment = "[${var.Environment}]"
+	Owner = "[${var.Owner}]"
+	Project = "[${var.Project}]"
   }
 }
 
@@ -295,9 +295,9 @@ resource "aws_security_group" "ntt-elb-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags {
-    Name = "${var.ntt_elb_sg_name}"
-	Environment = "${var.Environment}"
-	Owner = "${var.Owner}"
-	Project = "${var.Project}"
+    Name = "[${var.ntt_elb_sg_name}]"
+	Environment = "[${var.Environment}]"
+	Owner = "[${var.Owner}]"
+	Project = "[${var.Project}]"
   }
 }
