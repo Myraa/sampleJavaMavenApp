@@ -37,7 +37,7 @@
   "provisioners": [{
     "type": "file",
      "source": "/var/lib/jenkins/workspace/sampleJavaMavenApp_master/target/my-app-1.0.0-SNAPSHOT.jar",
-    "destination": "/tmp/"
+    "destination": "/tmp/my-app-1.0.0-SNAPSHOT.jar"
   },
   {
     "type": "shell",
