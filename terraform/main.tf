@@ -254,13 +254,6 @@ resource "aws_elb" "ntt-elb" {
     target              = "HTTP:${var.app_port}/sys/v1/heartbeat"
     interval            = 30
   }
-  tags {
-    Name = "[${var.ntt_elb_name}]"
-	color = "[${var.ntt_elb_color}]"
-	Environment = "[${var.Environment}]"
-	Owner = "[${var.Owner}]"
-	Project = "[${var.Project}]"
-  }
 }
 
 # ------------------------------------------------------------------------------
