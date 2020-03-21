@@ -163,7 +163,7 @@ resource "aws_elb" "ntt-elb" {
   subnets = ["${var.public_subnets_elb}"]
   security_groups = ["${aws_security_group.ntt-elb-sg.id}"]
   listener {
-    lb_port = 80
+    lb_port = "80"
     lb_protocol = "http"
     instance_port = "80"
     instance_protocol = "http"
