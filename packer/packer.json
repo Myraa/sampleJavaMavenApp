@@ -50,11 +50,9 @@
     "sudo mkdir /opt/tomcat",
     "sudo cd /opt/tomcat",
     "sudo wget https://downloads.apache.org/tomcat/tomcat-10/v10.0.0-M3/bin/apache-tomcat-10.0.0-M3-deployer.tar.gz",
-    "sudo tar -zxvf apache-tomcat-10.0.0-M3-deployer.tar.gz –C /opt/tomcat",
+    "sudo tar -zxvf apache-tomcat-10.0.0-M3-deployer.tar.gz",
     "sudo groupadd tomcat",
-    "sudo useradd -s /bin/false –g tomcat –d /opt/tomcat tomcat",
-    "sudo chown –R tomcat webapps/ work temp/ logs",
-    "sudo cp -p /my-app-1.0.0-SNAPSHOT.jar /opt/tomcat/WEB-INF/lib"
+    "sudo useradd -s /bin/false –g tomcat –d /opt/tomcat tomcat"
     ]
   }]
 }
