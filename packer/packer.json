@@ -16,10 +16,10 @@
   "instance_type": "{{user `instance_type`}}",
   "ssh_username": "ubuntu",
   "ssh_pty": "true",
-  "ami_name": "AMI-LINUX1804-{{user `app_name`}}-{{user `release`}}",
+  "ami_name": "AMI-LINUX1804-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
 
   "tags": {
-    "Name": "AMI-myapp-0.0.1-SNAPSHOT",
+    "Name": "AMI-myapp-0.0.1-SNAPSHOT-{{user `buildversion`}}",
     "Application_role": "{{user `Application_role`}}",
     "Cluster": "{{user `Cluster`}}",
     "Environment": "{{user `Environment`}}",

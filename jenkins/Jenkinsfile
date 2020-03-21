@@ -191,6 +191,7 @@ def packerjob() {
         export version="0.0.1-SNAPSHOT"
         export BUILD_NUMBER
         packer build --debug -var-file variables.json packer.json |tee /tmp/packer.log
+	tail -2 /tmp/packer.log | head -2 | awk 'match($0, /ami-.*/) { print substr($0, RSTART, RLENGTH) }' > /tmp/ami.txt
         """
     }
 
@@ -206,7 +207,8 @@ def terraformjob()
        export AWS_ACCESS_KEY_ID
        export AWS_SECRET_ACCESS_KEY
        export AWS_PROFILE="ntt-dcs"
-       export TF_VAR_ami_id="ami-025569e0b3cc1c86a"
+       cat /tmp/ami.txt
+       export TF_VAR_ami_id=`cat /tmp/ami.txt`
        echo \$TF_VAR_ami_id
      cd terraform
      terraform init
