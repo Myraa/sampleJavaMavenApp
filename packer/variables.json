@@ -1,26 +1,24 @@
 {
 
-  "OS_Vsersion": "LINUX72",
+  "region": "us-east-2",
 
-  "region": "us-east-1",
+  "source_ami": "ami-0fc20dd1da406780b",
 
-  "source_ami": "ami-9a37cfe0",
+  "instance_type": "m2.micro",
 
-  "instance_type": "m4.large",
-
-  "name": "dcs",
+  "name": "myapp",
 
   "Application_role": "MW",
 
-  "Cluster": "Identity_Profile",
+  "Cluster": "myapp_cluster",
 
   "Environment": "dev",
 
-  "Owner": "Jason Kroger",
+  "Owner": "Prasad",
 
-  "Customer": "GMA_SDK",
+  "Customer": "NTT",
 
-  "Project": "DCSMW",
+  "Project": "NTT",
 
   "BuildType": "Snapshot"
 
