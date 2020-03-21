@@ -147,20 +147,21 @@ def unit_tests()
 def create_package()
     {
 
-        def originalV = get_version();
-        def major = originalV[1];
-        def minor = originalV[2];
-        def patch  = originalV[3];
-        def pom_version = "${major}.${minor}.${patch}";
-        def commit_message = sh (script: "git log -1| tail -1", returnStdout: true)
+        sh "mvn clean"
+       // def originalV = get_version();
+       // def major = originalV[1];
+       // def minor = originalV[2];
+       // def patch  = originalV[3];
+       // def pom_version = "${major}.${minor}.${patch}";
+       // def commit_message = sh (script: "git log -1| tail -1", returnStdout: true)
 
-        sh """
-        mvn -DskipTests package
-        git config user.name "Myraa"
-        git config user.email "boddu.prasad@gmail.com"
-        git tag v$pom_version.${env.BUILD_NUMBER}
-        git push -u ${repo_artifactory_path} master tag v$pom_version.${env.BUILD_NUMBER}
-        """
+       // sh """
+       // mvn -DskipTests package
+       // git config user.name "Myraa"
+       // git config user.email "boddu.prasad@gmail.com"
+       // git tag v$pom_version.${env.BUILD_NUMBER}
+       // git push -u ${repo_artifactory_path} master tag v$pom_version.${env.BUILD_NUMBER}
+       // """
     }
 
 def packerjob() {
