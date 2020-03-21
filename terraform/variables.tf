@@ -11,7 +11,7 @@ variable "instance_type" {
 }
 
 variable "cidr_blocks_inst_sg_in" {
-  default = "172.31.0.0/16"
+  default = "162.227.87.147/32"
 }
 
 variable "vpc_id" {
