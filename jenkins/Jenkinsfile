@@ -191,7 +191,7 @@ def packerjob() {
         export version="0.0.1-SNAPSHOT"
         export BUILD_NUMBER
         packer build --debug -var-file variables.json packer.json |tee /tmp/packer.log
-	tail -2 /tmp/packer.log | head -2 | awk 'match($0, /ami-.*/) { print substr($0, RSTART, RLENGTH) }' > /tmp/ami.txt
+	tail -2 /tmp/packer.log | head -2 | awk 'match(${0}, /ami-.*/) { print substr(${0}, RSTART, RLENGTH) }' > /tmp/ami.txt
         """
     }
 
