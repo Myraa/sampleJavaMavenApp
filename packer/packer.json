@@ -1,0 +1,51 @@
+{
+  "variables": {
+  "access_key": "{{env `AWS_ACCESS_ID`}}",
+  "secret_key": "{{env `AWS_SECRET_KEY`}}",
+  "buildversion": "{{env `BUILD_NUMBER`}}",
+  "app_name" : "{{env `appname`}}",
+  "release" : "{{env `release`}}"
+   },
+
+  "builders": [{
+  "type": "amazon-ebs",
+  "access_key": "{{user `access_key`}}",
+  "secret_key": "{{user `secret_key`}}",
+  "region": "{{user `region`}}",
+  "source_ami": "{{user `source_ami`}}",
+  "instance_type": "{{user `instance_type`}}",
+  "ssh_username": "ec2-user",
+  "ssh_pty": "true",
+  "ami_name": "AMI-LINUX72-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
+
+  "tags": {
+    "Name": "AMI-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
+    "Application_role": "{{user `Application_role`}}",
+    "Cluster": "{{user `Cluster`}}",
+    "Environment": "{{user `Environment`}}",
+    "version": "{{user `release`}}",
+    "Owner": "{{user `Owner`}}",
+    "Customer": "{{user `Customer`}}",
+    "Project": "{{user `Project`}}",
+    "Environment": "{{user `Environment`}}",
+    "Build_Version": "{{user `buildversion`}}",
+    "BuildType": "{{user `BuildType`}}",
+    "ReleaseVersion": "{{user `release`}}-{{user `BuildType`}}"
+    }
+    }],
+
+  "provisioners": [{
+    "type": "file",
+    "source": "{{user `app_name`}}-{{user `release`}}-SNAPSHOT.zip",
+    "destination": "/tmp/"
+  },
+  {
+    "type": "shell",
+    "inline": [
+    "sudo chown mulesoft:mulesoft /tmp/{{user `app_name`}}-{{user `release`}}-SNAPSHOT.zip",
+    "sudo cp -p /tmp/{{user `app_name`}}-{{user `release`}}-SNAPSHOT.zip /app/mule-esb/apps",
+    "sudo sleep 10",
+    "sudo sed -i 's/$deploy_env/{{user `Environment`}}/g' /app/mule-esb/conf/wrapper.conf"
+    ]
+  }]
+}

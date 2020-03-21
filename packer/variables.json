@@ -1,0 +1,27 @@
+{
+
+  "OS_Vsersion": "LINUX72",
+
+  "region": "us-east-1",
+
+  "source_ami": "ami-9a37cfe0",
+
+  "instance_type": "m4.large",
+
+  "name": "dcs",
+
+  "Application_role": "MW",
+
+  "Cluster": "Identity_Profile",
+
+  "Environment": "dev",
+
+  "Owner": "Jason Kroger",
+
+  "Customer": "GMA_SDK",
+
+  "Project": "DCSMW",
+
+  "BuildType": "Snapshot"
+
+}

@@ -165,12 +165,12 @@ def create_package()
     }
 
 def packerjob() {
-    stage 'Extract App from Artifactory'
+  //  stage 'Extract App from Artifactory'
         //Extract App from Artifactory
-        sh """
-        cd packer
-        sh download_artifact.sh
-        """
+   //     sh """
+    //    cd packer
+     //   sh download_artifact.sh
+      //  """
     stage 'Validate packer'
         sh """
         cd packer
