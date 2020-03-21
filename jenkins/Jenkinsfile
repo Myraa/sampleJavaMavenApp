@@ -176,8 +176,9 @@ def packerjob() {
         cd packer
         export appname="myapp"
         export release="0.0.1-SNAPSHOT"
+        export version="0.0.1-SNAPSHOT"
         export BUILD_NUMBER
-        /opt/hashicorp/packer validate -var-file variables.json packer.json
+        packer validate -var-file variables.json packer.json
         """
     stage 'Run packer build'
         sh """#!/bin/bash
@@ -185,10 +186,11 @@ def packerjob() {
         export aws_access_key
         export aws_secret_key
         cd packer
-        export appname=`echo dcs-*.zip |cut -f1,2,3 -d "-"`
-        export release=`echo dcs-*.zip | cut -f4 -d"-" | cut -f1,2,3 -d"."`
+        export appname="myapp"
+        export release="0.0.1-SNAPSHOT"
+        export version="0.0.1-SNAPSHOT"
         export BUILD_NUMBER
-        /home/ec2-user/terra/packer build --debug -var-file variables.json packer.json |tee /tmp/packer.log
+        packer build --debug -var-file variables.json packer.json |tee /tmp/packer.log
         """
     }
 

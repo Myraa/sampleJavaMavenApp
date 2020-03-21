@@ -14,9 +14,9 @@
   "region": "{{user `region`}}",
   "source_ami": "{{user `source_ami`}}",
   "instance_type": "{{user `instance_type`}}",
-  "ssh_username": "ec2-user",
+  "ssh_username": "ubuntu",
   "ssh_pty": "true",
-  "ami_name": "AMI-LINUX72-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
+  "ami_name": "AMI-LINUX1804-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
 
   "tags": {
     "Name": "AMI-{{user `app_name`}}-{{user `release`}}-{{user `buildversion`}}",
