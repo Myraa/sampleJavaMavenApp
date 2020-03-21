@@ -43,7 +43,7 @@ variable "ntt_instance_sg_name" {
 }
 
 variable "key_name" {
-  default = "HopHop"
+  default = "jenkins"
 }
 
 variable "instance_name" {
