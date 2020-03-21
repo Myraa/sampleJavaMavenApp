@@ -206,9 +206,9 @@ def terraformjob()
          export AWS_PROFILE=ntt
          export TF_VAR_ami_id="myapp-0.0.1-SNAPSHOT"
          echo \$TF_VAR_ami_id
-     /opt/hashicorp/terraform init
-     /opt/hashicorp/terraform plan -no-color
-     /opt/hashicorp/terraform apply -no-color
+     terraform init
+     terraform plan -no-color
+     terraform apply -no-color
      sleep 300     """
 
 
