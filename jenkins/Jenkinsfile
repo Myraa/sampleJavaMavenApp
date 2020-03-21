@@ -201,15 +201,11 @@ def terraformjob()
     {
 
    stage "Get ami and Run terraform Job"
-   print env.appversion_identity
 
    sh """ #! /usr/bin/bash
-         export AWS_PROFILE=mcd-dcs
-         export TF_VAR_ami_id=`python getami/GetAMI.py AMI-dcs-identity-api-intg-$appversion_identity-*`
+         export AWS_PROFILE=ntt
+         export TF_VAR_ami_id="myapp-0.0.1-SNAPSHOT"
          echo \$TF_VAR_ami_id
-         echo \$appversion_identity
-     cd terraform-blue
-     ls -ltra
      /opt/hashicorp/terraform init
      /opt/hashicorp/terraform plan -no-color
      /opt/hashicorp/terraform apply -no-color
