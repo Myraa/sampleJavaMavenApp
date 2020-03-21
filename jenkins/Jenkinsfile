@@ -133,12 +133,12 @@ def unit_tests()
     def publish_junit()
     {
 
-        def exists = fileExists 'target/surefire-reports/TEST-unit.dcs-identity-test-suite.xml'
+        def exists = fileExists 'target/surefire-reports/TEST-unit.samplejavamavenapp-test-suite.xml'
 // A check to ensure job will not fail if the units are not available
     if (exists)
         {
         echo 'junit report xml file is generated'
-        step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/TEST-unit.dcs-identity-test-suite.xml'])
+        step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/TEST-unit.samplejavamavenapp-test-suite.xml'])
         }
 
     }
