@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: copy foo
+      copy:
+        src:  /tmp/playbook.yaml
+        dest: /

@@ -39,24 +39,20 @@
     "destination": "/tmp/"
   },
   {
+    "type": "file",
+     "source": "/var/lib/jenkins/workspace/sampleJavaMavenApp_master/playbook.yml",
+    "destination": "/tmp/"
+  },
+  {
     "type": "shell",
     "inline": [
     "sudo chown ubuntu:ubuntu /tmp/*.jar",
     "sudo cp -p /tmp/my-app-1.0.0-SNAPSHOT.jar /",
     "sudo sleep 10",
-    "sudo chmod u+x /my-app-1.0.0-SNAPSHOT.jar",
-    "sudo apt update",
-    "sudo apt install openjdk-11-jre-headless -y",
-    "sudo mkdir /opt/tomcat",
-    "sudo chmod -R 755 /opt/tomcat",
-    "cd /opt/tomcat",
-    "sudo wget https://apache.osuosl.org/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz",
-    "sudo chmod u+x apache-tomcat-9.0.33.tar.gz",
-    "sudo tar -zxvf apache-tomcat-9.0.33.tar.gz",
-    "sudo groupadd tomcat",
-    "sudo useradd -s /bin/false -g tomcat tomcat",
-    "sudo /home/ubuntu/apache-tomcat-9.0.33/bin/startup.sh",
-    "sudo cp /my-app-1.0.0-SNAPSHOT.jar /home/ubuntu/apache-tomcat-9.0.33/lib/"
+    "sudo cp -p /tmp/playbook.yml /",
+    "sudo sleep 10",
+    "sudo yum install ansible -y",
+    "ansible-playbook -i \"localhost,\" /playbook.yml"
     ]
   }]
 }
