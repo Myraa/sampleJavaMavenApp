@@ -40,7 +40,7 @@
     - name: copy the jar to lib directory
       copy:
         src:  /my-app-1.0.0-SNAPSHOT.jar
-        dest: /home/ubuntu/apache-tomcat-9.0.33/lib/
+        dest: /opt/tomcat/apache-tomcat-9.0.33/lib/
         
     - name: enable tomcat startup
       systemd:
