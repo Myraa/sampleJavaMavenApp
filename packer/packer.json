@@ -40,7 +40,7 @@
   },
   {
     "type": "file",
-     "source": "/var/lib/jenkins/workspace/sampleJavaMavenApp_master/playbook.yml",
+     "source": "/var/lib/jenkins/workspace/sampleJavaMavenApp_master/packer/playbook.yml",
     "destination": "/tmp/"
   },
   {
