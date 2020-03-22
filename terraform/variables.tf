@@ -11,7 +11,7 @@ variable "instance_type" {
 }
 
 variable "cidr_blocks_inst_sg_in" {
-  default = "162.227.87.147/32"
+  default = "0.0.0.0/0"
 }
 
 variable "vpc_id" {
@@ -27,7 +27,7 @@ variable "public_subnets_inst" {
 }
 
 variable "app_port" {
-  default = "8083"
+  default = "8080"
 }
 
 variable "ntt_elb_sg_name" {
