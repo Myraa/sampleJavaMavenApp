@@ -1,6 +1,50 @@
 - hosts: all
+  become: yes
   tasks:
-    - name: copy foo
+    - name: add group "tomcat"
+      group: name=tomcat
+      become: true
+    
+    - name: Create home directory for tomcat
+      file:
+        path: /opt/tomcat/
+        state: directory
+        mode: 0755
+      become: true
+  
+    - name: add user "tomcat"
+      user: name=tomcat group=tomcat home=/opt/tomcat shell=/sbin/nologin createhome=no
+      become: true
+    
+    - name: Extract tomcat
+      unarchive:
+        src: "https://apache.osuosl.org/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz"
+        dest: "/opt/tomcat/"
+        remote_src: True
+      become: true
+
+    - name: Change config file folder permission tomcat
+      file:
+        path: /opt/tomcat/apache-tomcat-9.0.33
+        mode: "g+rwx"
+        recurse: yes
+      become: true
+
+    - name: Change owner for tomcat folders
+      file:
+        path: "/opt/tomcat/apache-tomcat-9.0.33"
+        group: tomcat
+        recurse: yes
+      become: true
+
+    - name: copy the jar to lib directory
       copy:
-        src:  /tmp/playbook.yaml
-        dest: /
+        src:  /my-app-1.0.0-SNAPSHOT.jar
+        dest: /home/ubuntu/apache-tomcat-9.0.33/lib/
+        
+    - name: enable tomcat startup
+      systemd:
+        name: tomcat
+        enabled: yes
+        state: restarted
+      become: true
