@@ -52,7 +52,8 @@
     "sudo cp -p /tmp/playbook.yml /",
     "sudo sleep 10",
     "sudo apt-get update",
-    "sudo apt-get install ansible -y"
+    "sudo apt-get install ansible -y",
+    "ansible-playbook -c local playbook.yml"
     ] 
   }
 ]

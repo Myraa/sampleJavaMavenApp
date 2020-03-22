@@ -1,21 +1,28 @@
-- hosts: all
+- hosts: localhost
   become: yes
   tasks:
+    - name: Update repositories cache and install "java" package
+      apt:
+        name: openjdk-11-jre-headless
+        update_cache: yes
+      become: true
+
     - name: add group "tomcat"
       group: name=tomcat
       become: true
-    
+
     - name: Create home directory for tomcat
       file:
         path: /opt/tomcat/
         state: directory
         mode: 0755
+        recurse: yes
       become: true
-  
+
     - name: add user "tomcat"
       user: name=tomcat group=tomcat home=/opt/tomcat shell=/sbin/nologin createhome=no
       become: true
-    
+
     - name: Extract tomcat
       unarchive:
         src: "https://apache.osuosl.org/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz"
@@ -40,11 +47,9 @@
     - name: copy the jar to lib directory
       copy:
         src:  /my-app-1.0.0-SNAPSHOT.jar
-        dest: /opt/tomcat/apache-tomcat-9.0.33/lib/
-        
-    - name: enable tomcat startup
-      systemd:
-        name: tomcat
-        enabled: yes
-        state: restarted
+        dest: /home/ubuntu/apache-tomcat-9.0.33/lib/
+
+    - name: start tomcat
+      command: /opt/tomcat/apache-tomcat-9.0.33/bin/startup.sh
       become: true
+
