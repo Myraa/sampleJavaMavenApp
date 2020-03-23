@@ -2,6 +2,7 @@
   become: yes
   vars:
     http_port: 8080
+    https_port: 8443
   tasks:
     - name: Update repositories cache and install "java" package
       apt:
