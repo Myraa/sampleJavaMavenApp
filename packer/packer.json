@@ -40,8 +40,8 @@
   },
   {
     "type": "file",
-     "source": "/var/lib/jenkins/workspace/sampleJavaMavenApp_master/packer/playbook.yml",
-    "destination": "/tmp/"
+     "source": "/var/lib/jenkins/workspace/sampleJavaMavenApp_master/packer/ansible",
+    "destination": "/tmp"
   },
   {
     "type": "shell",
@@ -49,7 +49,7 @@
     "sudo chown ubuntu:ubuntu /tmp/*.jar",
     "sudo cp -p /tmp/my-app-1.0.0-SNAPSHOT.jar /",
     "sudo sleep 10",
-    "sudo cp -p /tmp/playbook.yml /",
+    "sudo cp -p /tmp/ansible /",
     "sudo sleep 10",
     "sudo apt-get update",
     "sudo apt-get install ansible -y",
