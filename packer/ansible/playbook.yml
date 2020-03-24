@@ -42,6 +42,10 @@
     - name: Change ownership of Tomcat installation
       file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
 
+    - name: start tomcat
+      command: /opt/tomcat/apache-tomcat-9.0.33/bin/startup.sh
+      become: true
+      
     - name: Configure Tomcat server
       template: src=/ansible/tomcat/server.xml dest=/usr/share/tomcat/conf/
       notify: restart tomcat
@@ -49,10 +53,6 @@
     - name: Configure Tomcat users
       template: src=/ansible/tomcat/tomcat-users.xml dest=/usr/share/tomcat/conf/
       notify: restart tomcat
-
-    - name: start tomcat
-      command: /opt/tomcat/apache-tomcat-9.0.33/bin/startup.sh
-      become: true
 
     - name: copy the jar to lib directory
       copy:
